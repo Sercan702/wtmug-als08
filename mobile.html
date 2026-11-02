@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0f172a" />
+  <title>P2P Transfer — Mobil</title>
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="stylesheet" href="./style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>📱 P2P Transfer — Mobil</h1>
+    <span id="conn-status" class="badge">Bağlı değil</span>
+  </header>
+
+  <main>
+    <!-- QR Tarama -->
+    <section id="match-screen" class="camera">
+      <video id="scan-video" autoplay playsinline muted></video>
+      <div class="scan-hint">Bilgisayar ekranındaki QR kodu okutun</div>
+    </section>
+
+    <!-- Cevap QR göster -->
+    <section id="answer-screen" class="match-screen hidden">
+      <h2>Bu QR kodu bilgisayarın kamerasına okutun</h2>
+      <div class="qr-box" id="answer-qr">QR hazırlanıyor…</div>
+      <p class="hint">Bilgisayar bu QR'ı okuduğunda bağlantı otomatik kurulur.</p>
+    </section>
+
+    <!-- Sohbet -->
+    <section id="chat" class="chat">
+      <div id="messages" class="messages"></div>
+      <div class="composer">
+        <input id="text-input" type="text" placeholder="Mesaj yazın…" autocomplete="off" />
+        <button id="send-btn">Gönder</button>
+        <label>
+          📎
+          <input id="file-input" type="file" />
+        </label>
+      </div>
+    </section>
+  </main>
+
+  <script src="./app-common.js"></script>
+  <script src="./mobile.js"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0f172a" />
+  <title>P2P Transfer — Web</title>
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="stylesheet" href="./style.css" />
+  <!-- QR üretimi için hafif kütüphane -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>💻 P2P Transfer — Web</h1>
+    <span id="conn-status" class="badge">Bağlı değil</span>
+  </header>
+
+  <main>
+    <!-- Eşleşme ekranı -->
+    <section id="match-screen" class="match-screen">
+      <h2>Telefonunuzla QR kodu okutun</h2>
+      <div class="qr-box" id="qr-box">QR hazırlanıyor…</div>
+      <p class="hint">
+        Telefondan <code>mobile.html</code> sayfasını açın ve kamerayı bu QR koda tutun.
+        Bağlantı kurulduğunda bu ekran sohbete dönüşecek.
+      </p>
+    </section>
+
+    <!-- Cevap QR okuma (telefon cevap QR'ı gösterdiyse) -->
+    <section id="answer-screen" class="match-screen hidden">
+      <h2>Telefonunuzdaki cevap QR kodunu okutun</h2>
+      <div class="camera" id="answer-camera" style="max-width:480px;width:100%;height:320px;border-radius:12px;">
+        <video id="answer-video" autoplay playsinline muted></video>
+        <div class="scan-hint">Kamerayı telefon ekranındaki QR koda tutun</div>
+      </div>
+      <p class="hint" id="answer-hint">
+        Telefon QR okuma sonrası size bir “cevap QR” gösterecek. Onu bu kameraya okutun.
+      </p>
+    </section>
+
+    <!-- Sohbet -->
+    <section id="chat" class="chat">
+      <div id="messages" class="messages"></div>
+      <div class="composer">
+        <input id="text-input" type="text" placeholder="Mesaj yazın…" autocomplete="off" />
+        <button id="send-btn">Gönder</button>
+        <label>
+          📎 Dosya
+          <input id="file-input" type="file" />
+        </label>
+      </div>
+    </section>
+  </main>
+
+  <script src="./app-common.js"></script>
+  <script src="./desktop.js"></script>
+</body>
+</html>
